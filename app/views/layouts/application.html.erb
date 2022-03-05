@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Workers</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <!--
+      The browser will ignore this because it has an unfamiliar type.
+      The id helps us find the node in application.tsx.
+      The src attribute will be used there to build a worker.
+    -->
+    <script id="worker" type="text/js-worker" src=<%=asset_path('worker')%>></script>
+  </head>
+
+  <body>
+    <!--
+      give React something to sink its claws into
+      there is no yield as one would expect in a Rails layout because everything is done by application.tsx
+    -->
+    <div id='app'></div>
+  </body>
+</html>
